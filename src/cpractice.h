@@ -1,6 +1,6 @@
 /**
- * Student Name:
- * Semester:
+ * Student Name: Tracy Urquhart
+ * Semester: Fall 2025
  * 
  * C Practice
  * This assignment is to help you practice using C. Is is setup to
