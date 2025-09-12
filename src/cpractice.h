@@ -87,8 +87,28 @@ void print_array(int *arr, int size)
  *
  * here is a quick list of numbers: https://www.math.net/list-of-fibonacci-numbers
  **/
-int* create_array_of_ints_fib(int size){
-    return NULL;
+int* create_array_of_ints_fib(int size) {
+    // create array of size
+    int arr[size];
+    arr[0] = 1;
+    arr[1] = 1;
+
+    // update array
+    int remaining = size - 1; 
+    if (remaining > 0) {
+        for(int i = 2; i <= remaining; i++) {
+            int value = arr[i - 1] + arr[i - 2];
+            arr[i] = value;
+            // printf("i: {%d}\n", i);
+            // printf("value: {%d}\n", value);
+            // printf("i -1: {%d}\n", arr[i - 1]);
+            // printf("i -2: {%d}\n", arr[i - 2]);
+            // printf("arr[i] {%d}\n", arr[i]);
+        }
+    }
+    
+    // return array
+    return arr;
 }
 
 /**
@@ -101,7 +121,7 @@ int* create_array_of_ints_fib(int size){
  * Consider using swap. 
 */
 void reverse_array(int *arr, int size){
-    
+
 }
 
 

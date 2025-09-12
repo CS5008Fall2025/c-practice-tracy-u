@@ -45,6 +45,9 @@ int test_create_array_of_ints_fib() {
     int expected[] = {1, 1, 2, 3, 5};
     for (int i = 0; i < 5; i++) {
         if (arr[i] != expected[i]) {
+            printf("actual: {%d}\n", arr[i]);
+            printf("expected: {%d}\n", expected[i]);
+            
             free(arr);
             return 0;
         }
