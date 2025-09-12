@@ -139,8 +139,13 @@ void reverse_array(int *arr, int size){
  * 
 */
 int* double_array_size(int *arr, int size){
-
-
+    // will initialize with all values to 0. 
+    int* doubled = (int*)calloc(size * 2, sizeof(int));
+    // set the first half to match in initial array
+    for(int i = 0; i < size; i++) {
+        doubled[i] = arr[i];
+    }
+    return doubled;
 }
 
 /**

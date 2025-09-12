@@ -69,6 +69,24 @@ int test_reverse_array() {
 }
 
 
+int test_double_array_size() {
+    printf("4. test_double_array_size()\n");
+    int* arr = create_simple_array(5);
+    printf("begin array: ");
+    print_array(arr, 5);
+    int* doubled = double_array_size(arr, 5);
+    printf("begin array: ");
+    print_array(doubled, 10);
+    int expected[] = {0, 1, 2, 3, 4, 0, 0, 0, 0, 0};
+    // check values in first half
+    for (int i = 0; i < 10; i++) {
+        if (arr[i] != expected[i]) {
+            return 0;
+        }
+    }
+    // everything passed
+    return 1;
+}
 
 
 
@@ -77,6 +95,7 @@ int (*unitTests[])() = {
         test_swap_one,
         test_create_array_of_ints_fib,
         test_reverse_array, 
+        test_double_array_size,
         // add more test function names here
 };
 
