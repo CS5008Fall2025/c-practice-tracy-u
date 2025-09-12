@@ -91,21 +91,19 @@ void print_array(int *arr, int size)
  **/
 int* create_array_of_ints_fib(int size) {
     // create array of size
-    int arr[size];
-    arr[0] = 1;
-    arr[1] = 1;
+    int * arr = malloc(sizeof(int) * size);
 
+    // if 0 or neg do something
+    if (size > 1) { 
+        arr[0] = 1;
+    }
+    if (size > 2) {
+        arr[1] = 1;
+    }
     // update array
     for(int i = 2; i <= size; i++) {
-        // int value = arr[i - 1] + arr[i - 2];
         arr[i] = arr[i - 1] + arr[i - 2];
-        // printf("i: {%d}\n", i);
-        // printf("value: {%d}\n", value);
-        // printf("i -1: {%d}\n", arr[i - 1]);
-        // printf("i -2: {%d}\n", arr[i - 2]);
-        // printf("arr[i] {%d}\n", arr[i]);
     }
-    print_array(arr, size);
     // return array
     return arr; 
 }
