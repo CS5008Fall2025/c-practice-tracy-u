@@ -54,20 +54,19 @@ int test_create_array_of_ints_fib() {
     return 1;
 }
 
-// int test_reverse_array() {
-//     printf("3. test_reverse_array()\n");
-//     int arr[] = {1, 2, 3, 4, 5};
-//     reverse_array(*arr, 5);
-//     int expected[] = {5, 4, 3, 2, 1};
-//     for (int i = 0; i < 5; i++) {
-//         if (arr[i] != expected[i]) {
-//             free(arr);
-//             return 0;
-//         }
-//     }
-//     // everything matched
-//     return 1;
-// }
+int test_reverse_array() {
+    printf("3. test_reverse_array()\n");
+    int* arr = create_simple_array(5);
+    reverse_array(arr, 5);
+    int expected[] = {4, 3, 2, 1, 0};
+    for (int i = 0; i < 5; i++) {
+        if (arr[i] != expected[i]) {
+            return 0;
+        }
+    }
+    // everything matched
+    return 1;
+}
 
 
 
@@ -77,6 +76,7 @@ int test_create_array_of_ints_fib() {
 int (*unitTests[])() = {
         test_swap_one,
         test_create_array_of_ints_fib,
+        test_reverse_array, 
         // add more test function names here
 };
 
@@ -89,7 +89,7 @@ int main(int argc, char const *argv[])
         if (unitTests[i]()) {
             numPassed++;
         } else {
-            printf("Test %d failed\n", i);
+            printf("Test %d failed\n", i + 1);
         }
     }
 

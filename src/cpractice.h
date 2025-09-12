@@ -120,20 +120,16 @@ int* create_array_of_ints_fib(int size) {
 void reverse_array(int *arr, int size){
     // find middle 
     int middle = size / 2; // with int as result, truncates toward 0.
+
     // loop swapping 
     for(int i = 0; i < middle; i++) {
-        // a = i, b = 0 - (i+1)
         // example of 5 array (0, -1; 1, -2; 2)
-        int swap_index = 0 - (i + 1);
-        int temp = arr[i];
-    
-        arr[i] = arr[swap_index];
-        arr[swap_index] = temp;
+        int swap_index = size - (i + 1);
+        swap(&arr[i], &arr[swap_index]);
     }
 }
 
 
- 
 /**
  * Doubles the size of an array, and copies all previous values into the new array.
  * All other values should be set to 0. Returns a pointer to the new array
@@ -143,7 +139,8 @@ void reverse_array(int *arr, int size){
  * 
 */
 int* double_array_size(int *arr, int size){
-    return NULL;
+
+
 }
 
 /**
