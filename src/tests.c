@@ -43,19 +43,37 @@ int test_create_array_of_ints_fib() {
     printf("2. test_create_array_of_ints_fib()\n");
     int* arr = create_array_of_ints_fib(5);
     int expected[] = {1, 1, 2, 3, 5};
+    print_array(arr, 5);
+    print_array(expected, 5);
     for (int i = 0; i < 5; i++) {
+        printf("i: %d, arr: %d, expected: %d", i, arr[i], expected[i]);
         if (arr[i] != expected[i]) {
-            printf("actual: {%d}\n", arr[i]);
-            printf("expected: {%d}\n", expected[i]);
-            
-            free(arr);
+            printf("failed at i: %d, arr: %d, expected: %d", i, arr[i], expected[i]);
+            //free(arr);
             return 0;
         }
     }
-    free(arr); // note expected does not need freed.. why is that?
+    printf("failed outside loop");
+
+    //free(arr); // note expected does not need freed.. why is that?
     // everything matched
     return 1;
 }
+
+// int test_reverse_array() {
+//     printf("3. test_reverse_array()\n");
+//     int arr[] = {1, 2, 3, 4, 5};
+//     reverse_array(*arr, 5);
+//     int expected[] = {5, 4, 3, 2, 1};
+//     for (int i = 0; i < 5; i++) {
+//         if (arr[i] != expected[i]) {
+//             free(arr);
+//             return 0;
+//         }
+//     }
+//     // everything matched
+//     return 1;
+// }
 
 
 

@@ -46,7 +46,9 @@ typedef struct {
  * of the variables in the calling function. 
 **/
 void swap(int *a, int *b){
-
+    int temp = *a;
+    *a = *b; 
+    *b = temp;
 }
 
 /**
@@ -94,21 +96,18 @@ int* create_array_of_ints_fib(int size) {
     arr[1] = 1;
 
     // update array
-    int remaining = size - 1; 
-    if (remaining > 0) {
-        for(int i = 2; i <= remaining; i++) {
-            int value = arr[i - 1] + arr[i - 2];
-            arr[i] = value;
-            // printf("i: {%d}\n", i);
-            // printf("value: {%d}\n", value);
-            // printf("i -1: {%d}\n", arr[i - 1]);
-            // printf("i -2: {%d}\n", arr[i - 2]);
-            // printf("arr[i] {%d}\n", arr[i]);
-        }
+    for(int i = 2; i <= size; i++) {
+        // int value = arr[i - 1] + arr[i - 2];
+        arr[i] = arr[i - 1] + arr[i - 2];
+        // printf("i: {%d}\n", i);
+        // printf("value: {%d}\n", value);
+        // printf("i -1: {%d}\n", arr[i - 1]);
+        // printf("i -2: {%d}\n", arr[i - 2]);
+        // printf("arr[i] {%d}\n", arr[i]);
     }
-    
+    print_array(arr, size);
     // return array
-    return arr;
+    return arr; 
 }
 
 /**
@@ -121,7 +120,18 @@ int* create_array_of_ints_fib(int size) {
  * Consider using swap. 
 */
 void reverse_array(int *arr, int size){
-
+    // find middle 
+    int middle = size / 2; // with int as result, truncates toward 0.
+    // loop swapping 
+    for(int i = 0; i < middle; i++) {
+        // a = i, b = 0 - (i+1)
+        // example of 5 array (0, -1; 1, -2; 2)
+        int swap_index = 0 - (i + 1);
+        int temp = arr[i];
+    
+        arr[i] = arr[swap_index];
+        arr[swap_index] = temp;
+    }
 }
 
 
