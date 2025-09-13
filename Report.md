@@ -112,7 +112,7 @@ Add any references you use here. Use ACM style formatting, adding to the numbers
 
 1. cppreference.com Contributors. 2025. Standard library header <stdlib.h>. cppreference.com. Retrieved May 1, 2025 from https://en.cppreference.com/w/c/header/stdlib
 
-2. ...
+2. https://www.w3schools.com/c/c_pointers_arrays.php
 
 ## Resource/Help: Linking to images?
 To link an image, you use the following code
