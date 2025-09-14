@@ -72,15 +72,11 @@ int test_reverse_array() {
 int test_double_array_size() {
     printf("4. test_double_array_size()\n");
     int* arr = create_simple_array(5);
-    printf("begin array: ");
-    print_array(arr, 5);
     int* doubled = double_array_size(arr, 5);
-    printf("begin array: ");
-    print_array(doubled, 10);
     int expected[] = {0, 1, 2, 3, 4, 0, 0, 0, 0, 0};
-    // check values in first half
+    // check values
     for (int i = 0; i < 10; i++) {
-        if (arr[i] != expected[i]) {
+        if (doubled[i] != expected[i]) {
             return 0;
         }
     }
@@ -88,6 +84,41 @@ int test_double_array_size() {
     return 1;
 }
 
+int test_copy_array_start_end_loop(){
+    printf("5. test_copy_array_start_end_loop()\n");
+    int arr[] = {1, 2, 3, 4, 5};
+
+    // test 1: invalid
+    int new_size = 3;
+    int* invalid1 = copy_array_start_end_loop(arr, 5, -1, 3, &new_size); // start less than 0
+    int* invalid2 = copy_array_start_end_loop(arr, 5, 5, 3, &new_size); // start equal to size
+    int* invalid3 = copy_array_start_end_loop(arr, 5, 6, 3, &new_size); // start > size
+    int* invalid4 = copy_array_start_end_loop(arr, 5, 1, 5, &new_size); // end equal to size
+    int* invalid5 = copy_array_start_end_loop(arr, 5, 1, 6, &new_size); // end > size
+    if(invalid1 != NULL | invalid2 != NULL | invalid3 != NULL | invalid4 != NULL | invalid5 != NULL) {
+        return 0;
+    }
+
+    // test 2: valid
+    int expected1[] = {2, 3, 4};
+    int *looped1 = copy_array_start_end_loop(arr, 5, 1, 3, &new_size);
+    for (int i = 0; i < 3; i++) {
+        if (looped1[i] != expected1[i]) {
+            return 0;
+        }
+    }
+
+    // test 3: valid
+    int new_size2 = 4;
+    int expected2[] = {4, 5, 1, 2};
+    int *looped2 = copy_array_start_end_loop(arr, 5, 3, 1, &new_size2);
+    for (int i = 0; i < 4; i++) {
+        if (looped2[i] != expected2[i]) {
+            return 0;
+        }
+    }
+    return 1;
+}
 
 
 // this is a list of all the unit tests
@@ -96,6 +127,7 @@ int (*unitTests[])() = {
         test_create_array_of_ints_fib,
         test_reverse_array, 
         test_double_array_size,
+        test_copy_array_start_end_loop,
         // add more test function names here
 };
 
