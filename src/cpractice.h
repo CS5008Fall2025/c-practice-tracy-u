@@ -191,12 +191,16 @@ int* copy_array_start_end_loop(int *arr, int size, int start, int end, int *new_
             new[i] = arr[start];
         }
     } else if(end < start) {
-        for(int i = 0, step = start; i < size; i++, step++) {
-            new[i] = arr[step];
+        int index = 0;
+        for(int step = start; step < size; step++) {
+            new[index++] = arr[step];
         }
-        for(int restart = 0, i = (size - start); i < *new_size; i++, restart++){
-            new[i] = arr[restart];
+        for(int restart = 0; restart < *new_size; restart++){
+            new[index++] = arr[restart];
         }
+    // if start = end
+    } else {
+        new[0] = arr[start];
     }
     return new;
 }

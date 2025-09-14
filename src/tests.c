@@ -108,7 +108,7 @@ int test_copy_array_start_end_loop(){
         }
     }
 
-    // test 3: valid
+    // test 3: valid wrap around
     int new_size2 = 4;
     int expected2[] = {4, 5, 1, 2};
     int *looped2 = copy_array_start_end_loop(arr, 5, 3, 1, &new_size2);
