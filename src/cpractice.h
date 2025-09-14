@@ -182,11 +182,10 @@ int* copy_array_start_end_loop(int *arr, int size, int start, int end, int *new_
         return NULL;
     }
     // // create new array
-    int* new = malloc(sizeof(int) * *new_size);
+    int* new = malloc(sizeof(int) * (*new_size));
 
     // update values
-    // if start < end
-    if(start < end) {
+    if(start <= end) {
         for(int i = 0; i < *new_size; i++, start++) {
             new[i] = arr[start];
         }
@@ -198,9 +197,6 @@ int* copy_array_start_end_loop(int *arr, int size, int start, int end, int *new_
         for(int restart = 0; restart < *new_size; restart++){
             new[index++] = arr[restart];
         }
-    // if start = end
-    } else {
-        new[0] = arr[start];
     }
     return new;
 }
@@ -214,7 +210,10 @@ Practice with struts
  * and returns the new point
 */
 Point* create_point(int x, int y){
-    return NULL;
+    Point* point = malloc(sizeof(Point)); 
+    point-> x = x;
+    point-> y = y;
+    return point;
 }
 
 /**

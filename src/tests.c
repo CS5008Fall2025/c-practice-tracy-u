@@ -99,10 +99,11 @@ int test_copy_array_start_end_loop(){
         return 0;
     }
 
-    // test 2: valid
+    // test 2: valid - start < end
     int expected1[] = {2, 3, 4};
     int *looped1 = copy_array_start_end_loop(arr, 5, 1, 3, &new_size);
-    for (int i = 0; i < 3; i++) {
+    print_array(looped1, 3);
+    for (int i = 0; i < new_size; i++) {
         if (looped1[i] != expected1[i]) {
             return 0;
         }
@@ -112,10 +113,23 @@ int test_copy_array_start_end_loop(){
     int new_size2 = 4;
     int expected2[] = {4, 5, 1, 2};
     int *looped2 = copy_array_start_end_loop(arr, 5, 3, 1, &new_size2);
-    for (int i = 0; i < 4; i++) {
+    print_array(looped2, 4);
+    for (int i = 0; i < new_size2; i++) {
         if (looped2[i] != expected2[i]) {
             return 0;
         }
+    }
+    return 1;
+}
+
+int test_create_point() {
+    Point expected;
+    expected.x = 20;
+    expected.y = -10;
+    Point *actual = create_point(20, -10);
+
+    if(expected.x != actual->x || expected.y != actual->y) {
+        return 0;
     }
     return 1;
 }
@@ -128,6 +142,7 @@ int (*unitTests[])() = {
         test_reverse_array, 
         test_double_array_size,
         test_copy_array_start_end_loop,
+        test_create_point,
         // add more test function names here
 };
 
