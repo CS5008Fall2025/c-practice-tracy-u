@@ -152,6 +152,48 @@ int test_create_polygon() {
 }
 
 
+int test_create_rectangle() {
+    printf("8. test_create_rectangle()\n");
+
+    int width = 10; 
+    int height = 5;
+    Polygon* actual = create_rectangle(width, height);
+
+    Point point0 = {0,0};
+    Point point1 = {width,0};
+    Point point2 = {width,height};
+    Point point3 = {0,height};
+
+    Point* actualPoint0 = actual->points[0]; 
+    Point* actualPoint1 = actual->points[1]; 
+    Point* actualPoint2 = actual->points[2]; 
+    Point* actualPoint3 = actual->points[3]; 
+
+
+
+    if( actualPoint0->x != point0.x || actualPoint0->y != point0.y) {
+        printf("Failed on point 0");
+        return 0;
+    }
+    if( actualPoint1->x != point1.x || actualPoint1->y != point1.y) {
+        printf("Failed on point 1");
+        return 0;
+    }
+    if(actualPoint2->x != point2.x || actualPoint2->y != point2.y) {
+        printf("Failed on point 2");
+        return 0;
+    }
+
+    if(actualPoint3->x != point3.x || actualPoint3->y != point3.y) {
+        printf("Failed on point 3");
+        return 0;
+    }
+
+    free_polygon(actual);
+    return 1;
+} 
+
+
 // this is a list of all the unit tests
 int (*unitTests[])() = {
         test_swap_one,
@@ -161,6 +203,7 @@ int (*unitTests[])() = {
         test_copy_array_start_end_loop,
         test_create_point,
         test_create_polygon,
+        test_create_rectangle,
         // add more test function names here
 };
 

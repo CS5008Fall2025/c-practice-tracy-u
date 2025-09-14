@@ -225,9 +225,8 @@ Point* create_point(int x, int y){
 */
 Polygon* create_polygon(int size){
     Polygon* polygon = malloc(sizeof(Polygon));
-    Point* points = malloc(sizeof(Point) * size);
+    polygon->points = malloc(sizeof(Point*) * size);
     polygon -> size = size;
-    polygon -> points = &points;
     return polygon;
 }
 
@@ -237,7 +236,14 @@ Polygon* create_polygon(int size){
  * all the points, to free them, free the array, and then free the polygon itself.
 */
 void free_polygon(Polygon *p){
-    
+    // loop through all the points & free them
+    for(int i = 0; i < p->size; i++) {
+        free(p->points[i]);
+    }
+    // free the array
+    free(p->points);
+    // free the polygon itself.
+    free(p);
 }
 
 /**
@@ -250,7 +256,14 @@ void free_polygon(Polygon *p){
  * 0, height
 */
 Polygon* create_rectangle(int width, int height){
-    return NULL;
+    Polygon* rec = create_polygon(4);
+
+    rec->points[0] = create_point(0, 0);
+    rec->points[1] = create_point(width, 0);
+    rec->points[2] = create_point(width, height);
+    rec->points[3] = create_point(0, height);
+
+    return rec;
 }
 
 
