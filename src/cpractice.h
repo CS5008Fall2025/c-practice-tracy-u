@@ -94,10 +94,13 @@ int* create_array_of_ints_fib(int size) {
     int * arr = malloc(sizeof(int) * size);
 
     // if 0 or neg do something
-    if (size > 1) { 
+    if (size <= 0) { 
+        return NULL;
+    }
+    if (size >= 1) { 
         arr[0] = 1;
     }
-    if (size > 2) {
+    if (size >= 2) {
         arr[1] = 1;
     }
     // update array
