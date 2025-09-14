@@ -123,6 +123,8 @@ int test_copy_array_start_end_loop(){
 }
 
 int test_create_point() {
+    printf("6. test_create_point()\n");
+
     Point expected;
     expected.x = 20;
     expected.y = -10;
@@ -131,6 +133,21 @@ int test_create_point() {
     if(expected.x != actual->x || expected.y != actual->y) {
         return 0;
     }
+    return 1;
+}
+
+int test_create_polygon() {
+    printf("7. test_create_polygon()\n");
+    int size = 5;
+    Polygon *actual = create_polygon(size);
+    Point** points = malloc(sizeof(Point) * size);
+
+    if(actual->size != size) {
+        return 0;
+    }
+    if(sizeof(actual->points) != sizeof(points)) {
+        return 0;
+    } 
     return 1;
 }
 
@@ -143,6 +160,7 @@ int (*unitTests[])() = {
         test_double_array_size,
         test_copy_array_start_end_loop,
         test_create_point,
+        test_create_polygon,
         // add more test function names here
 };
 

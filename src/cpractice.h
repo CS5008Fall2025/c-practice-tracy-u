@@ -211,8 +211,8 @@ Practice with struts
 */
 Point* create_point(int x, int y){
     Point* point = malloc(sizeof(Point)); 
-    point-> x = x;
-    point-> y = y;
+    point -> x = x;
+    point -> y = y;
     return point;
 }
 
@@ -224,7 +224,11 @@ Point* create_point(int x, int y){
  * the point values. it is just a polygon of eventual size, and an array of empty points. 
 */
 Polygon* create_polygon(int size){
-    return NULL;
+    Polygon* polygon = malloc(sizeof(Polygon));
+    Point* points = malloc(sizeof(Point) * size);
+    polygon -> size = size;
+    polygon -> points = &points;
+    return polygon;
 }
 
 
