@@ -328,17 +328,10 @@ void print_polygon(Polygon *p){
 */
 double calculate_polygon_area(Polygon *p){
     int point_count = p->size;
-    printf("points: %d \n", point_count);
     double area = 0;
     for (int i = 0; i < point_count; i++) {
         int j = (i + 1) % point_count;
-        printf("i: %d\n", i);
-        printf("j: %d\n", j);
-        print_point(p->points[i]);
-        printf("\np->points[i]->x: %d\n", p->points[i]->x);
         area += p->points[i]->x * p->points[j]->y - p->points[j]->x * p->points[i]->y;
-        printf("area: %f\n", area);
-
     }
     return area / 2;
 }
