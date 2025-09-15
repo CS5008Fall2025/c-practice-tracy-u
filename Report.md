@@ -29,7 +29,8 @@ Completely answer the report questions below. Make sure to double check the fina
 **Stack** allocation refers to memory assignment that happens during function calls. 
    - Memory is allocated in blocks, last in / first out. 
    - Memory allocation is managed automatically and when the function finishes execution, memory is deallocated.
-   - It is faster than heap allocation.  
+   - It is faster than heap allocation. 
+ 
 **Heap** allocation refers to dynamic memory allocation
    - Heap memory persists for the entire execution of the program. 
    - It is not automatically managed and needs to be managed by the programmer in C. 
@@ -108,20 +109,20 @@ Running the code produces the following output:
      - void * malloc(size_t) - allocates memory specified in size on the heap and returns a pointer to that location
      - void * calloc(size_t num_elements, size_t element_size) - contiguous allocation for allocating arrays with the default value of 0. Slower than malloc. 
      - int rand(void) - returns a random integer between 0 and RAND_MAX. Seed should be set before hand. 
-   *1. stdio.h - provides standard in/ out and file handling[4]*
-      * int printf(const char *format, ...) - Writes a formatted string to the console
-      * int scanf(const char *format, ...) - Reads formatted input from stdin.
-      * 	FILE *fopen(const char *filename, const char *mode) - Opens the filename pointed to by filename using the given mode.
-   
-   *2. inttypes.h - tools or formatting and working with numeric data type(int)[5]*
-      * PRIiMAX - This is printf specifier for intmax_t
-      * SCNxMAX -  This is scanf specifier for intmax_t (used for reading input)
-      * imaxabs - abs for intmax_t
- 
-   *3. assert.h - a library used for assertion tests[6]*
-      * void assert(int expression) evaluates the expression
-      * void assert(int expression) - with comma operator, can be used to print a message[7]
-      * static_assert(boolean_expression, message) runs at compile-time rather than at runtime
+*1. stdio.h - provides standard in/ out and file handling[4]*
+   * `int printf(const char *format, ...)` - Writes a formatted string to the console
+   * i`nt scanf(const char *format, ...)` - Reads formatted input from stdin.
+   * `FILE *fopen(const char *filename, const char *mode)` - Opens the filename pointed to by filename using the given mode.
+
+*2. inttypes.h - tools or formatting and working with numeric data type(int)[5]*
+   * `PRIiMAX` - This is printf specifier for intmax_t
+   * `SCNxMAX` -  This is scanf specifier for intmax_t (used for reading input)
+   * `imaxabs` - abs for intmax_t
+
+*3. assert.h - a library used for assertion tests[6]*
+   * `void assert(int expression)` evaluates the expression
+   * `void assert(int expression)` - with comma operator, can be used to print a message[7]
+   * `static_assert(boolean_expression, message)` runs at compile-time rather than at runtime
  
 
 **8. Looking at the struct Point and Polygon, we have a mix of values on the heap, and we make ample use of pointers. Take a moment to draw out how you think that looks after `create_triangle(2,3)` is called (see an example below). The important part of the drawing it to see that not everything is stored together in memory, but in different locations! Store the image file in your github repo and link it here. You can use any program to draw it such as [drawIO](https://app.diagrams.net/), or even draw it by hand and take a picture of it.**
@@ -144,9 +145,7 @@ For both these questions, are you are free to use what you did as the last secti
    See [Pointers in C](pointers_in_c.c)
 
 ## Deeper Thinking
-**In Java and Python, do you think new objects are stored on the stack or the heap? Feel free to work through your thoughts as to why it would be better to store them on the stack or heap. You should consider pass by reference, and how that is similar to pointer in your answer. Feel free to use resources, but make sure to cite them, and include the citation below using ACM format. You will note LLMs are not valid references, but they can give you directions to valid references. Make sure to use your own words. 
-
-Answer here using a paragraph (not just bullet points).** 
+**In Java and Python, do you think new objects are stored on the stack or the heap? Feel free to work through your thoughts as to why it would be better to store them on the stack or heap. You should consider pass by reference, and how that is similar to pointer in your answer. Feel free to use resources, but make sure to cite them, and include the citation below using ACM format. You will note LLMs are not valid references, but they can give you directions to valid references. Make sure to use your own words. Answer here using a paragraph (not just bullet points).** 
 
    In Java and Python, objects are stored on the heap, and memory clean up (garbage collection)[1][2] is managed automatically. Objects are stored on the heap because they need to persist inside and outside of the scope in which they were created. Within a function/method, variables are stored on the stack. Within a function, this makes sense because they can be popped on/off the stack. 
 
