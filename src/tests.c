@@ -64,6 +64,7 @@ int test_reverse_array() {
             return 0;
         }
     }
+    free(arr);
     // everything matched
     return 1;
 }
@@ -80,7 +81,8 @@ int test_double_array_size() {
             return 0;
         }
     }
-    // everything passed
+    free(arr);
+    free(doubled);
     return 1;
 }
 
@@ -99,6 +101,12 @@ int test_copy_array_start_end_loop(){
         return 0;
     }
 
+    free(invalid1);
+    free(invalid2);
+    free(invalid3);
+    free(invalid4);
+    free(invalid5);
+
     // test 2: valid - start < end
     int expected1[] = {2, 3, 4};
     int *looped1 = copy_array_start_end_loop(arr, 5, 1, 3, &new_size);
@@ -111,6 +119,8 @@ int test_copy_array_start_end_loop(){
             return 0;
         }
     }
+
+    free(looped1); 
 
     // test 3: valid wrap around
     int new_size2;
@@ -125,6 +135,9 @@ int test_copy_array_start_end_loop(){
             return 0;
         }
     }
+
+    free(looped2);
+
     return 1;
 }
 
@@ -139,6 +152,7 @@ int test_create_point() {
     if(expected.x != actual->x || expected.y != actual->y) {
         return 0;
     }
+    free(actual);
     return 1;
 }
 
@@ -154,6 +168,9 @@ int test_create_polygon() {
     if(sizeof(actual->points) != sizeof(points)) {
         return 0;
     } 
+
+    free(points);
+    free(actual);
     return 1;
 }
 
@@ -192,7 +209,6 @@ int test_create_rectangle() {
         printf("Failed on point 3");
         return 0;
     }
-
     free_polygon(actual);
     return 1;
 } 
@@ -225,7 +241,6 @@ int test_create_triangle() {
         printf("Failed on point 2");
         return 0;
     }
-
     free_polygon(actual);
     return 1;
 } 
@@ -240,6 +255,7 @@ int test_calculate_polygon_area() {
     if (area != expected) {
         return 0;
     }
+    free(triangle);
     return 1;
 }
 
