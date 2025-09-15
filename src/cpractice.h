@@ -177,11 +177,22 @@ int* double_array_size(int *arr, int size){
  */
 int* copy_array_start_end_loop(int *arr, int size, int start, int end, int *new_size) {
 
-    // if start or end are invalid >= size
+    // if start or end are less than 0 or >= size
     if(start < 0 || end < 0 || start >= size || end >= size) {
         return NULL;
     }
-    // // create new array
+
+    // calculate new size
+    int steps; 
+    if (start <= end) {
+        steps = end - start + 1;
+    } else {
+        steps = (size - start) + (end + 1);
+    }
+
+    *new_size = steps;
+
+    // create new array
     int* new = malloc(sizeof(int) * (*new_size));
 
     // update values

@@ -89,7 +89,7 @@ int test_copy_array_start_end_loop(){
     int arr[] = {1, 2, 3, 4, 5};
 
     // test 1: invalid
-    int new_size = 3;
+    int new_size;
     int* invalid1 = copy_array_start_end_loop(arr, 5, -1, 3, &new_size); // start less than 0
     int* invalid2 = copy_array_start_end_loop(arr, 5, 5, 3, &new_size); // start equal to size
     int* invalid3 = copy_array_start_end_loop(arr, 5, 6, 3, &new_size); // start > size
@@ -102,6 +102,10 @@ int test_copy_array_start_end_loop(){
     // test 2: valid - start < end
     int expected1[] = {2, 3, 4};
     int *looped1 = copy_array_start_end_loop(arr, 5, 1, 3, &new_size);
+    // calculated size should be 3
+    if (new_size != 3) {
+        return 0;
+    }
     for (int i = 0; i < new_size; i++) {
         if (looped1[i] != expected1[i]) {
             return 0;
@@ -109,9 +113,13 @@ int test_copy_array_start_end_loop(){
     }
 
     // test 3: valid wrap around
-    int new_size2 = 4;
+    int new_size2;
     int expected2[] = {4, 5, 1, 2};
     int *looped2 = copy_array_start_end_loop(arr, 5, 3, 1, &new_size2);
+    // calculated size should be 4
+    if (new_size2 != 4) {
+        return 0;
+    }
     for (int i = 0; i < new_size2; i++) {
         if (looped2[i] != expected2[i]) {
             return 0;
