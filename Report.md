@@ -111,7 +111,7 @@ Running the code produces the following output:
      - int rand(void) - returns a random integer between 0 and RAND_MAX. Seed should be set before hand. 
 *1. stdio.h - provides standard in/ out and file handling[4]*
    * `int printf(const char *format, ...)` - Writes a formatted string to the console
-   * i`nt scanf(const char *format, ...)` - Reads formatted input from stdin.
+   * `int scanf(const char *format, ...)` - Reads formatted input from stdin.
    * `FILE *fopen(const char *filename, const char *mode)` - Opens the filename pointed to by filename using the given mode.
 
 *2. inttypes.h - tools or formatting and working with numeric data type(int)[5]*
