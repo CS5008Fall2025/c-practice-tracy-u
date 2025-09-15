@@ -57,7 +57,7 @@ Completely answer the report questions below. Make sure to double check the fina
    ```
 **Would the code run correctly? Even if it does compile, what would be some potential runtime issues? After answering your thoughts, put the output of a run below (you may need to run it a few times).**
 
-   The code returns the memory address of a local variable, which can become corrupted or point to garbage values. 
+The code returns the memory address of a local variable, which can become corrupted or point to garbage values. 
 
    Compiling the code generates the following warning:
    ```text
@@ -65,6 +65,7 @@ Completely answer the report questions below. Make sure to double check the fina
    10 |      return &pt;
    ```
 
+Running the code produces the following output:
    ```text
    x: 10, y: 10%
    ```
