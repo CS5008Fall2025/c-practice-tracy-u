@@ -102,7 +102,6 @@ int test_copy_array_start_end_loop(){
     // test 2: valid - start < end
     int expected1[] = {2, 3, 4};
     int *looped1 = copy_array_start_end_loop(arr, 5, 1, 3, &new_size);
-    print_array(looped1, 3);
     for (int i = 0; i < new_size; i++) {
         if (looped1[i] != expected1[i]) {
             return 0;
@@ -113,7 +112,6 @@ int test_copy_array_start_end_loop(){
     int new_size2 = 4;
     int expected2[] = {4, 5, 1, 2};
     int *looped2 = copy_array_start_end_loop(arr, 5, 3, 1, &new_size2);
-    print_array(looped2, 4);
     for (int i = 0; i < new_size2; i++) {
         if (looped2[i] != expected2[i]) {
             return 0;
@@ -169,8 +167,6 @@ int test_create_rectangle() {
     Point* actualPoint2 = actual->points[2]; 
     Point* actualPoint3 = actual->points[3]; 
 
-
-
     if( actualPoint0->x != point0.x || actualPoint0->y != point0.y) {
         printf("Failed on point 0");
         return 0;
@@ -194,6 +190,51 @@ int test_create_rectangle() {
 } 
 
 
+int test_create_triangle() {
+    printf("9. test_create_triangle()\n");
+
+    int width = 10; 
+    int height = 5;
+    Polygon* actual = create_triangle(width, height);
+
+    Point point0 = {0,0};
+    Point point1 = {width,0};
+    Point point2 = {width,height};
+
+    Point* actualPoint0 = actual->points[0]; 
+    Point* actualPoint1 = actual->points[1]; 
+    Point* actualPoint2 = actual->points[2]; 
+
+    if( actualPoint0->x != point0.x || actualPoint0->y != point0.y) {
+        printf("Failed on point 0");
+        return 0;
+    }
+    if( actualPoint1->x != point1.x || actualPoint1->y != point1.y) {
+        printf("Failed on point 1");
+        return 0;
+    }
+    if(actualPoint2->x != point2.x || actualPoint2->y != point2.y) {
+        printf("Failed on point 2");
+        return 0;
+    }
+
+    free_polygon(actual);
+    return 1;
+} 
+
+int test_calculate_polygon_area() {
+    printf("10. test_calculate_polygon_area()\n");
+    int width = 10; 
+    int height = 5;
+    Polygon* triangle = create_triangle(width, height);
+    double expected = 25.0;
+    double area = calculate_polygon_area(triangle);
+    if (area != expected) {
+        return 0;
+    }
+    return 1;
+}
+
 // this is a list of all the unit tests
 int (*unitTests[])() = {
         test_swap_one,
@@ -204,6 +245,8 @@ int (*unitTests[])() = {
         test_create_point,
         test_create_polygon,
         test_create_rectangle,
+        test_create_triangle,
+        test_calculate_polygon_area,
         // add more test function names here
 };
 

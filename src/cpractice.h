@@ -276,7 +276,13 @@ Polygon* create_rectangle(int width, int height){
  * width, height
 */
 Polygon* create_triangle(int width, int height){
-    return NULL;
+    Polygon* triangle = create_polygon(3);
+
+    triangle->points[0] = create_point(0, 0);
+    triangle->points[1] = create_point(width, 0);
+    triangle->points[2] = create_point(width, height);
+
+    return triangle;
 }
 
 /**
@@ -310,7 +316,20 @@ void print_polygon(Polygon *p){
  * after area is summed across all points, divide by 2.0 and return the area.
 */
 double calculate_polygon_area(Polygon *p){
-    return 0.0;
+    int point_count = p->size;
+    printf("points: %d \n", point_count);
+    double area = 0;
+    for (int i = 0; i < point_count; i++) {
+        int j = (i + 1) % point_count;
+        printf("i: %d\n", i);
+        printf("j: %d\n", j);
+        print_point(p->points[i]);
+        printf("\np->points[i]->x: %d\n", p->points[i]->x);
+        area += p->points[i]->x * p->points[j]->y - p->points[j]->x * p->points[i]->y;
+        printf("area: %f\n", area);
+
+    }
+    return area / 2;
 }
 
 #endif // C_PRACTICE_H
