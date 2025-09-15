@@ -16,13 +16,13 @@ Completely answer the report questions below. Make sure to double check the fina
    - A pointer stores the memory address of another variable. 
    
 **2. In your test file, we had the following code:**    
-    ```c
+   ```c
     int* arr = create_array_of_ints_fib(5);
     int expected[] = {1, 1, 2, 3, 5};
-    ```
-    Later in the code we only `free(arr)` but not expected. Why is this? What is the difference in where they are stored in memory?
+   ```
+**Later in the code we only `free(arr)` but not expected. Why is this? What is the difference in where they are stored in memory?**
 
-    `arr` is stored on the heap, which requires its memory to be actively managed. On the other hand, `expected` is stored on the stack so it does not need to be freed. 
+   `arr` is stored on the heap, which requires its memory to be actively managed. On the other hand, `expected` is stored on the stack so it does not need to be freed. 
 
 **3. What is the difference between the heap and stack when related to memory allocation and management?**
 
