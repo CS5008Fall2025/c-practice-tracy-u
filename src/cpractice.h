@@ -93,10 +93,11 @@ int* create_array_of_ints_fib(int size) {
     // create array of size
     int * arr = malloc(sizeof(int) * size);
 
-    // if 0 or neg do something
+    // if 0 or neg return null
     if (size <= 0) { 
         return NULL;
     }
+    // set first two values to 1 if length requires it
     if (size >= 1) { 
         arr[0] = 1;
     }
@@ -121,12 +122,11 @@ int* create_array_of_ints_fib(int size) {
  * Consider using swap. 
 */
 void reverse_array(int *arr, int size){
-    // find middle 
+    // find middle since we only traverse the first half
     int middle = size / 2; // with int as result, truncates toward 0.
 
     // loop swapping 
     for(int i = 0; i < middle; i++) {
-        // example of 5 array (0, -1; 1, -2; 2)
         int swap_index = size - (i + 1);
         swap(&arr[i], &arr[swap_index]);
     }
@@ -142,7 +142,7 @@ void reverse_array(int *arr, int size){
  * 
 */
 int* double_array_size(int *arr, int size){
-    // will initialize with all values to 0. 
+    // calloc will initialize with all values to 0. 
     int* doubled = (int*)calloc(size * 2, sizeof(int));
     // set the first half to match in initial array
     for(int i = 0; i < size; i++) {
@@ -176,30 +176,29 @@ int* double_array_size(int *arr, int size){
  * to get an OB1 error!
  */
 int* copy_array_start_end_loop(int *arr, int size, int start, int end, int *new_size) {
-
     // if start or end are less than 0 or >= size
     if(start < 0 || end < 0 || start >= size || end >= size) {
         return NULL;
     }
 
-    // calculate new size
+    // calculate new_size
     int steps; 
     if (start <= end) {
         steps = end - start + 1;
     } else {
         steps = (size - start) + (end + 1);
     }
-
     *new_size = steps;
 
-    // create new array
+    // create new array of new size
     int* new = malloc(sizeof(int) * (*new_size));
 
-    // update values
+    // update values in new arr if start <= end
     if(start <= end) {
         for(int i = 0; i < *new_size; i++, start++) {
             new[i] = arr[start];
         }
+    // if end < start, then two steps
     } else if(end < start) {
         int index = 0;
         for(int step = start; step < size; step++) {
@@ -209,6 +208,7 @@ int* copy_array_start_end_loop(int *arr, int size, int start, int end, int *new_
             new[index++] = arr[restart];
         }
     }
+    // return thew new array
     return new;
 }
 
@@ -235,8 +235,10 @@ Point* create_point(int x, int y){
  * the point values. it is just a polygon of eventual size, and an array of empty points. 
 */
 Polygon* create_polygon(int size){
+    // allocate memory for polygon
     Polygon* polygon = malloc(sizeof(Polygon));
-    polygon->points = malloc(sizeof(Point*) * size);
+    // allocate memory for points required
+    polygon -> points = malloc(sizeof(Point*) * size);
     polygon -> size = size;
     return polygon;
 }
@@ -248,11 +250,11 @@ Polygon* create_polygon(int size){
 */
 void free_polygon(Polygon *p){
     // loop through all the points & free them
-    for(int i = 0; i < p->size; i++) {
-        free(p->points[i]);
+    for(int i = 0; i < p -> size; i++) {
+        free(p -> points[i]);
     }
     // free the array
-    free(p->points);
+    free(p -> points);
     // free the polygon itself.
     free(p);
 }
@@ -269,10 +271,10 @@ void free_polygon(Polygon *p){
 Polygon* create_rectangle(int width, int height){
     Polygon* rec = create_polygon(4);
 
-    rec->points[0] = create_point(0, 0);
-    rec->points[1] = create_point(width, 0);
-    rec->points[2] = create_point(width, height);
-    rec->points[3] = create_point(0, height);
+    rec -> points[0] = create_point(0, 0);
+    rec -> points[1] = create_point(width, 0);
+    rec -> points[2] = create_point(width, height);
+    rec -> points[3] = create_point(0, height);
 
     return rec;
 }
@@ -289,9 +291,9 @@ Polygon* create_rectangle(int width, int height){
 Polygon* create_triangle(int width, int height){
     Polygon* triangle = create_polygon(3);
 
-    triangle->points[0] = create_point(0, 0);
-    triangle->points[1] = create_point(width, 0);
-    triangle->points[2] = create_point(width, height);
+    triangle -> points[0] = create_point(0, 0);
+    triangle -> points[1] = create_point(width, 0);
+    triangle -> points[2] = create_point(width, height);
 
     return triangle;
 }
@@ -307,8 +309,8 @@ void print_point(Point *p){
  * Prints the polygon in the format "(x, y) (x, y) (x, y) \n"
 */
 void print_polygon(Polygon *p){
-    for(int i = 0; i < p->size; i++){
-        print_point(p->points[i]);
+    for(int i = 0; i < p -> size; i++){
+        print_point(p -> points[i]);
         printf(" ");
     }
     printf("\n");
@@ -327,11 +329,11 @@ void print_polygon(Polygon *p){
  * after area is summed across all points, divide by 2.0 and return the area.
 */
 double calculate_polygon_area(Polygon *p){
-    int point_count = p->size;
+    int point_count = p -> size;
     double area = 0;
     for (int i = 0; i < point_count; i++) {
         int j = (i + 1) % point_count;
-        area += p->points[i]->x * p->points[j]->y - p->points[j]->x * p->points[i]->y;
+        area += p ->points[i]->x * p->points[j]->y - p->points[j]->x * p->points[i]->y;
     }
     return area / 2;
 }

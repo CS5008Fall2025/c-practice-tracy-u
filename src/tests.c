@@ -59,13 +59,13 @@ int test_reverse_array() {
     int* arr = create_simple_array(5);
     reverse_array(arr, 5);
     int expected[] = {4, 3, 2, 1, 0};
+    // test values match
     for (int i = 0; i < 5; i++) {
         if (arr[i] != expected[i]) {
             return 0;
         }
     }
     free(arr);
-    // everything matched
     return 1;
 }
 
@@ -90,7 +90,7 @@ int test_copy_array_start_end_loop(){
     printf("5. test_copy_array_start_end_loop()\n");
     int arr[] = {1, 2, 3, 4, 5};
 
-    // test 1: invalid
+    // test 1: invalid cases
     int new_size;
     int* invalid1 = copy_array_start_end_loop(arr, 5, -1, 3, &new_size); // start less than 0
     int* invalid2 = copy_array_start_end_loop(arr, 5, 5, 3, &new_size); // start equal to size
@@ -107,22 +107,22 @@ int test_copy_array_start_end_loop(){
     free(invalid4);
     free(invalid5);
 
-    // test 2: valid - start < end
+    // test 2: valid case where start < end
     int expected1[] = {2, 3, 4};
     int *looped1 = copy_array_start_end_loop(arr, 5, 1, 3, &new_size);
     // calculated size should be 3
     if (new_size != 3) {
         return 0;
     }
+    // ensure values match
     for (int i = 0; i < new_size; i++) {
         if (looped1[i] != expected1[i]) {
             return 0;
         }
     }
-
     free(looped1); 
 
-    // test 3: valid wrap around
+    // test 3: valid case with wrap around
     int new_size2;
     int expected2[] = {4, 5, 1, 2};
     int *looped2 = copy_array_start_end_loop(arr, 5, 3, 1, &new_size2);
@@ -130,14 +130,13 @@ int test_copy_array_start_end_loop(){
     if (new_size2 != 4) {
         return 0;
     }
+    // ensure values match
     for (int i = 0; i < new_size2; i++) {
         if (looped2[i] != expected2[i]) {
             return 0;
         }
     }
-
     free(looped2);
-
     return 1;
 }
 
@@ -148,7 +147,7 @@ int test_create_point() {
     expected.x = 20;
     expected.y = -10;
     Point *actual = create_point(20, -10);
-
+    // ensure x and y values match
     if(expected.x != actual->x || expected.y != actual->y) {
         return 0;
     }
@@ -162,6 +161,7 @@ int test_create_polygon() {
     Polygon *actual = create_polygon(size);
     Point** points = malloc(sizeof(Point) * size);
 
+    // ensure size of sizes match
     if(actual->size != size) {
         return 0;
     }
@@ -249,13 +249,25 @@ int test_calculate_polygon_area() {
     printf("10. test_calculate_polygon_area()\n");
     int width = 10; 
     int height = 5;
+
+    // Test for triangle
     Polygon* triangle = create_triangle(width, height);
-    double expected = 25.0;
-    double area = calculate_polygon_area(triangle);
-    if (area != expected) {
+    double expected1 = 25.0; // manually calculated expected area
+    double area1 = calculate_polygon_area(triangle);
+    if (area1 != expected1) {
         return 0;
     }
     free(triangle);
+
+    // Test for rectangle
+    Polygon* rectangle = create_rectangle(width, height);
+    double expected2 = 50.0; // manually calculated expected area
+    double area2 = calculate_polygon_area(rectangle);
+    if (area2 != expected2) {
+        return 0;
+    }
+    free(rectangle);
+
     return 1;
 }
 
